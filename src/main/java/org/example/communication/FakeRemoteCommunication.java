@@ -1,11 +1,17 @@
 package org.example.communication;
 
 import com.github.sarxos.webcam.Webcam;
+
+import com.github.sarxos.webcam.WebcamResolution;
 import org.example.processors.MotionProcessor;
 import org.example.utils.Vector3D;
 import org.example.vehicle.config.VehicleConfiguration;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.awt.*;
+import java.util.Arrays;
+import java.util.logging.Level;
 
 public class FakeRemoteCommunication implements RemoteCommunication {
     private final Webcam webcam;
@@ -24,10 +30,24 @@ public class FakeRemoteCommunication implements RemoteCommunication {
         remoteConfiguration.setVideoCompatible(true);
 
         webcam = Webcam.getDefault();
-        Dimension[] dimensions = webcam.getViewSizes();
+        //Dimension[] dimensions = webcam.getViewSizes();
+        //webcam.setViewSize(dimensions[dimensions.length - 1]);
+        Dimension[] nonStandardResolutions = new Dimension[] {
+                WebcamResolution.PAL.getSize(),
+                WebcamResolution.HD.getSize(),
+                new Dimension(2000, 1000),
+                new Dimension(1000, 500),
+        };
 
-        webcam.setViewSize(dimensions[dimensions.length - 1]);
-        webcam.open();
+        webcam.setCustomViewSizes(nonStandardResolutions);
+        webcam.setViewSize(WebcamResolution.HD.getSize());
+
+
+        if(webcam.open()) {
+            System.out.println("Open");
+        } else {
+            System.out.println("Not open");
+        }
 
     }
 

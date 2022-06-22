@@ -1,6 +1,6 @@
 # Open-RCRemote
 
-## Description
+## **Description**
 
 Connect to your RC car using a custom WIFI socket protocol to control it, receive video feed from it whilst simulating a combustion engine with advanced regulations processes.
 
@@ -9,7 +9,10 @@ Connect to your RC car using a custom WIFI socket protocol to control it, receiv
 - Create custom configurations
 - PID tuning
 
-## Todo 
+### Todo 
 
 - Compressed video feeds
 - Remote communication
+
+## License
+Licensed under [BSD License](https://opensource.org/licenses/BSD-3-Clause)

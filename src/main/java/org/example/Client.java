@@ -27,8 +27,6 @@ public class Client {
         PIDConfiguration accelConfig = vconf.getAccelPID();
         PIDConfiguration speedConfig = vconf.getSpeedPID();
 
-
-
         Input input = new Input();
         Vehicle car = new Vehicle();
 
