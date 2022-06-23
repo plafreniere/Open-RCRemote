@@ -46,8 +46,15 @@ public class Vehicle implements Runnable {
 
     @Override
     public void run() {
+
+        accelPID.reset();
+        speedPID.reset();
         System.out.println("Vehicle thread started");
-        System.out.println(speedPID);
+        System.out.println("Speed pid " + speedPID);
+        System.out.println("Accel pid " + accelPID);
+        System.out.println("Speed conf pid " + speedConfig);
+        System.out.println("Accel conf pid " + accelConfig);
+
         started = true;
         DecimalFormat df = new DecimalFormat("0.00");
         sleepTime = 1000 / refreshRate;

@@ -77,6 +77,8 @@ public class PIDEditorGUI extends JFrame implements ActionListener {
         vehicle.getConfiguration().setAccelPID(accelConfig);
         vehicle.getConfiguration().setSpeedPID(speedConfig);
         vehicle.getConfiguration().saveToFile();
+        accelConfig.saveToFile();
+        speedConfig.saveToFile();
     }
     private void closeWindow() {
         dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));

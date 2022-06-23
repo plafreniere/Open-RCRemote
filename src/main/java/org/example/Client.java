@@ -31,11 +31,11 @@ public class Client {
         Vehicle car = new Vehicle();
 
 
-
         TorqueCurve tc = BasicTorqueCurve.getCurve();
         RemoteCommunication remote = new FakeRemoteCommunication();
         MotionProcessor motionProcessor = new MotionProcessor(new DistanceAcquisitionImpl(remote));
         remote.setMotionProcessor(motionProcessor);
+        remote.setBrakeBinding(input.getBinding("brake"));
 
         car.setInput(input);
         car.setRefreshRate(5); // default 10

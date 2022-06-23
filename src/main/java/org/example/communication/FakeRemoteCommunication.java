@@ -3,6 +3,7 @@ package org.example.communication;
 import com.github.sarxos.webcam.Webcam;
 
 import com.github.sarxos.webcam.WebcamResolution;
+import org.example.input.Binding;
 import org.example.processors.MotionProcessor;
 import org.example.utils.Vector3D;
 import org.example.vehicle.config.VehicleConfiguration;
@@ -23,6 +24,9 @@ public class FakeRemoteCommunication implements RemoteCommunication {
     RemoteConfiguration remoteConfiguration;
 
     private MotionProcessor motionProcessor;
+
+    private Binding brakeForce;
+
     public FakeRemoteCommunication() {
         remoteConfiguration = new RemoteConfiguration();
         remoteConfiguration.setIp("localhost");
@@ -63,10 +67,13 @@ public class FakeRemoteCommunication implements RemoteCommunication {
 
     @Override
     public Vector3D receiveMotion() {
-        float loss = (motionProcessor.getSpeed().getX() * 5f) + 2;
+        float loss = ((motionProcessor.getSpeed().getX() * 5f)) + (1500f * brakeForce.getValue());
         float accel = (motorValue * 20f);
-        float newPosition = lastPosition + (accel- loss);
-        if(newPosition < 0) {
+        if(lastPosition < 1) {
+            lastPosition = 0;
+        }
+        float newPosition =  lastPosition + (accel- loss);
+        if(newPosition < 1) {
             newPosition = 0;
         }
         float filter = 0.5F;
@@ -125,5 +132,13 @@ public class FakeRemoteCommunication implements RemoteCommunication {
     @Override
     public RemoteConfiguration getRemoteConfiguration() {
         return remoteConfiguration;
+    }
+
+    public Binding getBrakeBinding() {
+        return brakeForce;
+    }
+
+    public void setBrakeBinding(Binding brakeForce) {
+        this.brakeForce = brakeForce;
     }
 }

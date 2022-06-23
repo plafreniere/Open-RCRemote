@@ -1,5 +1,6 @@
 package org.example.communication;
 
+import org.example.input.Binding;
 import org.example.processors.MotionProcessor;
 import org.example.utils.Vector3D;
 import org.example.vehicle.config.VehicleConfiguration;
@@ -31,4 +32,8 @@ public interface RemoteCommunication {
     void sendConfiguration(VehicleConfiguration vehicleConfiguration);
 
     void setMotionProcessor(MotionProcessor motionProcessor);
+
+    void setBrakeBinding(Binding binding);
+
+    Binding getBrakeBinding();
 }

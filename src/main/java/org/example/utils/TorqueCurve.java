@@ -68,7 +68,7 @@ public class TorqueCurve {
         float biggest = 0;
         for (Vector3D point : points) {
             if (point.getY() > biggest)
-                biggest = point.getX();
+                biggest = point.getY();
         }
         this.maximumTorque = biggest;
     }
